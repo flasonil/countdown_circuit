@@ -29,9 +29,9 @@ module counter
   always@(posedge clk)
     begin
       if(enable)
-        q<=next_value
+        q<=next_value;
       else
-        q<=q
+        q<=q;
     end
   
 endmodule
