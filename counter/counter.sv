@@ -4,6 +4,7 @@ module counter
   (
     input logic start,
     input logic clk,
+    input logic rst,
     
     output logic ready
   );
@@ -28,10 +29,14 @@ module counter
   
   always@(posedge clk)
     begin
-      if(enable)
-        q<=next_value;
-      else
-        q<=q;
+      if(rst)
+        next_value<=0;
+      else begin
+        if(enable)
+          q<=next_value;
+        else
+          q<=q;
+      end
     end
   
 endmodule
