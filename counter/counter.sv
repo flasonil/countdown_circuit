@@ -8,32 +8,27 @@ module counter
 	output logic [4:0] q
 );
 
-logic [4:0] next_value;
 logic enable;
 
 always@(posedge clk) begin
 	if(rst) begin
 		q<=5'd0;
-		next_value<=5'd8;
 		enable<=1'd1;
 	end
 	else begin
-		if(enable)
-			q<=next_value;
-		else
-			q<=q;
-	end
-
-	if(q==0) begin
-		next_value=5'd8;
-		ready=1'd1;
-		enable=start;
-	end
-	else begin
-		next_value=q-5'd1;
-		ready=1'd0;
-		enable=1'd1;
+		if(enable==1 && q==0) begin
+			q<=5'd8;
+			ready=1'd1;
+			enable<=start;
+		end
+		else if(enable==1 && q!=0) begin
+			q<=q - 1'd1;
+			ready=1'd0;
+			enable=1'd1;
+		end
+		else if(enable ==0) begin
+			enable <= start;
+		end
 	end
 end
-
 endmodule
