@@ -1,4 +1,5 @@
 
+
 //Improve coverage testbench
 `timescale 1ns/1ps
 
@@ -50,9 +51,13 @@ module testbench ();
         #7 rst = 1'd0;
 
 	@(negedge clk);
-	@(negedge clk);
 	start = 1'd1;
 	@(negedge clk);
+	
+	@(negedge clk);
+	@(negedge clk);
+	@(negedge clk);
+	start = 1'd0;
 	@(negedge clk);
 	@(negedge clk);
 	@(negedge clk);
@@ -73,8 +78,7 @@ module testbench ();
 	@(negedge clk);
 	@(negedge clk);
 	@(negedge clk);
-	@(negedge clk);
-	@(negedge clk);
+	start = 1'd1;
 	@(negedge clk);
 	@(negedge clk);
 	@(negedge clk);
